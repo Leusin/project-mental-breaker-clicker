@@ -47,13 +47,13 @@ public class CGUpgradeButton : MonoBehaviour
             level++;
             CGDataController.Instance.PerClick += pointByUpgrade;
 
-            UdateUpgrade();
+            UpdateUpgrade();
             UpdateUI();
             CGDataController.Instance.SaveUpgradeButton(this);
         }
     }
 
-    private void UdateUpgrade()
+    private void UpdateUpgrade()
     {
         pointByUpgrade = startPointByUpgrade * (int)Mathf.Pow(upgradePow, level);
         currentCost = startCurrentCost * (int)Mathf.Pow(costPow, level);
