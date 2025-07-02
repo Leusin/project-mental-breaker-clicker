@@ -1,43 +1,49 @@
 // Breath 를 위한 로직 컨트롤러
 
-using UnityEngine;
 using DG.Tweening;
 
-public class MBBreathController : MonoBehaviour
+public class MBBreatheController
 {
-    // TEMP : 나중에 DataController 가 데이터 할당
-    public MBBreathData data = new MBBreathData();
+    private MBBreatheData _breathData;
+    private MBMentalStatData _statsData;
 
+    public MBBreatheController(MBBreatheData breathData, MBMentalStatData statsData)
+    {
+        _breathData = breathData;
+        this._statsData = statsData;
+    }
+    
     public void StartBreathCharging()
     {
         DOTween.To(
-            () => data.currentPoint,
-            x => data.currentPoint = x,
-            data.MaxPoint,
-            data.HalfDuration
+            () => _breathData.currentPoint,
+            x => _breathData.currentPoint = x,
+            _breathData.MaxPoint,
+            _breathData.HalfDuration
         ).SetEase(Ease.InSine);
     }
 
     public void StartBreathDischarging()
     {
         DOTween.To(
-            () => data.currentPoint,
-            x => data.currentPoint = x,
+            () => _breathData.currentPoint,
+            x => _breathData.currentPoint = x,
             0,
-            data.HalfDuration
+            _breathData.HalfDuration
         ).SetEase(Ease.OutQuad)
          .OnComplete(() =>
          {
-             data.state = MBBreathState.Charging;
+             _breathData.state = MBBreathState.Charging;
              StartBreathCharging();
          });
     }
 
     public void TriggerButton()
     {
-        if (data.state == MBBreathState.Charging && data.currentPoint >= data.MaxPoint)
+        if (_breathData.state == MBBreathState.Charging && _breathData.currentPoint >= _breathData.MaxPoint)
         {
-            data.state = MBBreathState.Discharging;
+            _statsData.MentalXP += _breathData.PerBreath; // XP 지급
+            _breathData.state = MBBreathState.Discharging;
             StartBreathDischarging();
         }
     }

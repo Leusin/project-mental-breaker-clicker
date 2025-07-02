@@ -62,10 +62,6 @@ namespace Leusin.Tools
             {
                 Destroy(gameObject);
             }
-
-            OnAwake();
         }
-
-        protected virtual void OnAwake() { }
     }
 }
