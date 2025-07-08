@@ -4,14 +4,16 @@ public static class MBPlayerPrefKeys
 {
     // Breathe Section
     public const string BreatheDuration = "BreatheDuration";
-    public const string PerBreathe = "PerBreathe";
+    public const string PerBreath = "PerBreath";
     
     //
     // Mental Status Section
     //
-    public const string MentalXp = "MentalXp";
+    public const string MentalPoint = "MentalPoint";
 
-    public const string Energy = "Energy";
+    public const string MentalLevel = "MentalLevel";
+    public const string MentalMood = "MentalMood";
+    public const string MentalState = "MentalState";
 
 
     //

@@ -44,9 +44,9 @@ public class MBBreatheData
     {
         get
         {
-            if (PlayerPrefs.HasKey(MBPlayerPrefKeys.BreatheDuration))
+            if (PlayerPrefs.HasKey(MBPlayerPrefKeys.PerBreath))
             {
-                return long.Parse(PlayerPrefs.GetString(MBPlayerPrefKeys.BreatheDuration));
+                return long.Parse(PlayerPrefs.GetString(MBPlayerPrefKeys.PerBreath));
             }
             else
             {
@@ -55,7 +55,7 @@ public class MBBreatheData
         }
         set
         {
-            PlayerPrefs.SetString(MBPlayerPrefKeys.BreatheDuration, value.ToString());
+            PlayerPrefs.SetString(MBPlayerPrefKeys.PerBreath, value.ToString());
         }
     }
 }
