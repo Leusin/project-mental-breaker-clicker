@@ -5,7 +5,7 @@ public static class MBPlayerPrefKeys
     // Breathe Section
     public const string BreatheDuration = "BreatheDuration";
     public const string PerBreath = "PerBreath";
-    
+
     //
     // Mental Status Section
     //
@@ -22,5 +22,11 @@ public static class MBPlayerPrefKeys
     public static string GetTimeKey()
     {
         return $"Time";
+    }
+
+    // Upgrade Data Section
+    public static string GetUpgradeLevelKey(MBUpgradeData data)
+    {
+        return $"{data.upgradeId}_Level";
     }
 }

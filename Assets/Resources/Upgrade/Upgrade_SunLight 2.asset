@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74f8e9c3f72aeb149b4c77877dada2f7, type: 3}
+  m_Name: Upgrade_SunLight 2
+  m_EditorClassIdentifier: 
+  upgradeId: C
+  upgradeName: D
+  description: MP/sec +3
+  type: 0
+  effectType: 2
+  baseEffectValue: 1
+  effectPerLevel: 0.5
+  baseCost: 1
+  costMultiplier: 1.6
+  unlockConditionText: Level 2
+  flavorText: "The sunlight warmly wraps my back\u2026"
