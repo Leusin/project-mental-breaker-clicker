@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeId: sunlight
   upgradeName: bask in the sun
-  description: MP/sec +1
+  description: MP/sec +
   baseEffectValue: 0
   effectPerLevel: 0
   baseCost: 0

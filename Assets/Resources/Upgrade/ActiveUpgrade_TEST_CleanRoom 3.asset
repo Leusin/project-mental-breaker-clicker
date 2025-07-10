@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeId: clean_room
   upgradeName: cleaning the room
-  description: MP/click +1
+  description: MP/click +
   baseEffectValue: 3
-  effectPerLevel: 0
+  effectPerLevel: 4
   baseCost: 0
   costMultiplier: 0
   unlockConditionText: ...
