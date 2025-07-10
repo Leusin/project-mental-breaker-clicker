@@ -32,14 +32,14 @@ public class MBUpgradeListManager : MonoBehaviourSingleton<MBUpgradeListManager>
     public float GetTotalMPPerSec()
     {
         return upgradeList
-            .Where(u => u.data.type == MBUpgradeType.Passive && u.data.effectType == StatEffectType.MPPerSec)
+            .Where(u => u.data is MBPassiveUpgradeData)
             .Sum(u => u.CurrentEffect);
     }
 
     public int GetClickBonus()
     {
         return (int)upgradeList
-            .Where(u => u.data.type == MBUpgradeType.Active && u.data.effectType == StatEffectType.MPPerClick)
+            .Where(u => u.data is MBActiveUpgradeData)
             .Sum(u => u.CurrentEffect);
     }
 }

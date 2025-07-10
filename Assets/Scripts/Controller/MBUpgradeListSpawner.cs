@@ -1,33 +1,45 @@
+using UnityEngine;
 using System.Collections.Generic;
 
 /// <summary>
-/// 클릭 처리 로직 처리 (MP 소모, 레벨업 등)
+/// 업글 UI 생성 + Controller 생성  
 /// </summary>
-public class MBUpgradeListSpawner 
+public class MBUpgradePanelController: MonoBehaviour
 {
-    private MBUpgradeListManager _upgradeManager;
-    private MBMentalStatData _statsData;
+    public GameObject upgradeEntryPrefab;
+    public Transform contentRoot;
 
-    public MBUpgradeListSpawner(MBUpgradeListManager manager, MBMentalStatData stats)
+    private MBUpgradeController _upgradeController;
+
+    void Start()
     {
-        _upgradeManager = manager;
-        _statsData = stats;
+        // 컨트롤러 생성 시 필요한 것들 주입
+        var stats = MBDataManager.Instance.MentalStats;
+        var manager = MBUpgradeListManager.Instance;
+        _upgradeController = new MBUpgradeController(manager, stats);
+
+        LoadUpgrades();
     }
 
-    public List<MBUpgradeRuntimeData> GetAllUpgrades()
+    public void LoadUpgradeList(List<MBUpgradeRuntimeData> upgrades)
     {
-        return _upgradeManager.upgradeList;
-    }
-
-    public bool TryPurchaseUpgrade(MBUpgradeRuntimeData upgrade)
-    {
-        long cost = upgrade.CurrentCost;
-        if (_statsData.MentalPoint >= cost)
+        foreach (var data in upgrades)
         {
-            _statsData.MentalPoint -= cost;
-            upgrade.Level++;
-            return true;
+            GameObject go = Instantiate(upgradeEntryPrefab, contentRoot);
+            MBUpgradeUIEntry entry = go.GetComponent<MBUpgradeUIEntry>();
+            entry.Setup(data, OnUpgradeClicked);
         }
-        return false;
+    }
+    private void LoadUpgrades()
+    {
+        List<MBUpgradeRuntimeData> allUpgrades = _upgradeController.GetAllUpgrades();
+        LoadUpgradeList(allUpgrades);
+    }
+
+    private void OnUpgradeClicked(MBUpgradeRuntimeData clickedUpgrade)
+    {
+        Debug.Log($"업글 시도: {clickedUpgrade.data.upgradeName}");
+
+        // MP 차감 / 업글 레벨 증가 등 처리 가능
     }
 }

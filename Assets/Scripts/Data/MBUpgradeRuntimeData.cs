@@ -33,6 +33,7 @@ public class MBUpgradeRuntimeData
         }
     }
 
+    // TEMP
     public bool isUnlocked => Level > 0;
 
     public float CurrentEffect => data.baseEffectValue + Level * data.effectPerLevel;
