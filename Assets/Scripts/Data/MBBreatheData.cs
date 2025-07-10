@@ -4,14 +4,15 @@ using System;
 public enum MBBreathState
 {
     Charging,
-    Discharging
+    Discharging,
+    Idle
 }
 
 [Serializable]
 public class MBBreatheData
 {
     [HideInInspector]
-    public float currentPoint = 0f;
+    public float currentSliderVal = 0f;
     public float initDuration = 6f;
     private long _initPerBreath = 1;
     private float _initMultiplier = 1.1f;

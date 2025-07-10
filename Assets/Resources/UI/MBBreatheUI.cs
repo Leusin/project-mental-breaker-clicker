@@ -5,10 +5,10 @@ using TMPro;
 public class MBBreatheUI : MonoBehaviour
 {
     public CanvasGroup canvasGroup;
-    public MBBreatheController controller;
     public TMP_Text label;
     public TMP_Text multiplierValue;
 
+    private MBBreatheController _controller;
     private MBBreatheData _data;
     private Slider _slider;
     private Button _button;
@@ -23,10 +23,10 @@ public class MBBreatheUI : MonoBehaviour
     {
         _data = MBDataManager.Instance.BreathData;
         
-        controller = new MBBreatheController(_data, MBDataManager.Instance.MentalStats);
-        controller.StartBreathCharging();
+        _controller = new MBBreatheController(_data, MBDataManager.Instance.MentalStats);
+        _controller.StartBreathCharging();
 
-        _button.onClick.AddListener(() => controller.TriggerButton());
+        _button.onClick.AddListener(() => _controller.TriggerButton());
 
         //_label.text = $"[ 심호흡 하기 ]";
     }
@@ -35,10 +35,10 @@ public class MBBreatheUI : MonoBehaviour
     {
         _slider.minValue = 0;
         _slider.maxValue = _data.MaxPoint;
-        _slider.value = _data.currentPoint;
+        _slider.value = _data.currentSliderVal;
 
         multiplierValue.text = _data.Multiplier.ToString();
 
-        canvasGroup.alpha = _data.currentPoint < _data.MaxPoint ? 0.8f : 1.0f;
+        canvasGroup.alpha = _data.currentSliderVal < _data.MaxPoint ? 0.8f : 1.0f;
     }
 }

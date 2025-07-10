@@ -12,22 +12,27 @@ public class MBBreatheController
         _breathData = breathData;
         this._statsData = statsData;
     }
-    
+
     public void StartBreathCharging()
     {
         DOTween.To(
-            () => _breathData.currentPoint,
-            x => _breathData.currentPoint = x,
+            () => _breathData.currentSliderVal,
+            x => _breathData.currentSliderVal = x,
             _breathData.MaxPoint,
             _breathData.HalfDuration
-        ).SetEase(Ease.InSine);
+        ).SetEase(Ease.InSine)
+         .OnComplete(() =>
+         {
+             _breathData.state = MBBreathState.Idle;
+         });
+        
     }
 
     public void StartBreathDischarging()
     {
         DOTween.To(
-            () => _breathData.currentPoint,
-            x => _breathData.currentPoint = x,
+            () => _breathData.currentSliderVal,
+            x => _breathData.currentSliderVal = x,
             0,
             _breathData.HalfDuration
         ).SetEase(Ease.OutQuad)
@@ -40,7 +45,7 @@ public class MBBreatheController
 
     public void TriggerButton()
     {
-        if (_breathData.state == MBBreathState.Charging && _breathData.currentPoint >= _breathData.MaxPoint)
+        if (_breathData.state == MBBreathState.Idle)
         {
             _statsData.MentalPoint += (long)(_breathData.PerBreath * _breathData.Multiplier); // XP 지급
             _breathData.state = MBBreathState.Discharging;
