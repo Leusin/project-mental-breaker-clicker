@@ -4,6 +4,7 @@ public abstract class MBUpgradeData : ScriptableObject
 {
     public string upgradeId;
     public string upgradeName;
+    
     public string description;
 
     public float baseEffectValue;

@@ -13,7 +13,7 @@ public class MBBreatheData
     [HideInInspector]
     public float currentPoint = 0f;
     public float initDuration = 6f;
-    public long initPerBreath = 1; // 한 번 호흡할 떄 획득히는 포인트
+    private long basePerBreath = 1; // 한 번 호흡할 떄 획득히는 포인트
 
     [HideInInspector]
     public MBBreathState state = MBBreathState.Charging;
@@ -46,11 +46,11 @@ public class MBBreatheData
         {
             if (PlayerPrefs.HasKey(MBPlayerPrefKeys.PerBreath))
             {
-                return long.Parse(PlayerPrefs.GetString(MBPlayerPrefKeys.PerBreath));
+                return basePerBreath + long.Parse(PlayerPrefs.GetString(MBPlayerPrefKeys.PerBreath));
             }
             else
             {
-                return initPerBreath;
+                return basePerBreath;
             }
         }
         set

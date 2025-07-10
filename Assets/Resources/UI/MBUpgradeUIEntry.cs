@@ -11,6 +11,7 @@ public class MBUpgradeUIEntry : MonoBehaviour
     public TMP_Text nameText;
     public TMP_Text flavorText;
     public TMP_Text descText;
+    public TMP_Text effectText;
     public TMP_Text costText;
     public Button buyButton;
 
@@ -26,8 +27,17 @@ public class MBUpgradeUIEntry : MonoBehaviour
         nameText.text = upgrade.data.upgradeName;
         flavorText.text = upgrade.data.flavorText;
         descText.text = upgrade.data.description;
+        effectText.text = upgrade.CurrentEffect.ToString("F2");
         costText.text = $"MP {upgrade.CurrentCost}";
 
         buyButton.onClick.AddListener(() => _onBuyCallback?.Invoke(_data));
+        buyButton.onClick.AddListener(UpdateUI);
+    }
+
+    private void UpdateUI()
+    {
+        levelText.text = _data.Level.ToString();
+        effectText.text = _data.CurrentEffect.ToString("F2");
+        costText.text = $"MP {_data.CurrentCost}";
     }
 }
