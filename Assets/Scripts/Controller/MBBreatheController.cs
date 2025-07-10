@@ -42,7 +42,7 @@ public class MBBreatheController
     {
         if (_breathData.state == MBBreathState.Charging && _breathData.currentPoint >= _breathData.MaxPoint)
         {
-            _statsData.MentalPoint += _breathData.PerBreath; // XP 지급
+            _statsData.MentalPoint += (long)(_breathData.PerBreath * _breathData.Multiplier); // XP 지급
             _breathData.state = MBBreathState.Discharging;
             StartBreathDischarging();
         }
