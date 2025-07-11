@@ -11,7 +11,6 @@ public static class MBPlayerPrefKeys
     // Mental Status Section
     //
     public const string MentalPoint = "MentalPoint";
-
     public const string MentalLevel = "MentalLevel";
     public const string MentalMood = "MentalMood";
     public const string MentalState = "MentalState";

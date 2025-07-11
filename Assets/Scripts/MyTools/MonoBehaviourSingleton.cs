@@ -2,7 +2,6 @@ using UnityEngine;
 
 namespace Leusin.Tools
 {
-    
     public abstract class MonoBehaviourSingleton<T> : MonoBehaviour where T : MonoBehaviour
     {
         private static T _instance;

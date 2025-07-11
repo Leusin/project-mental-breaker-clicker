@@ -18,7 +18,7 @@ public class MBUpgradeList
 
     private void LoadUpgradeData()
     {
-        MBUpgradeData[] upgrades = Resources.LoadAll<MBUpgradeData>("Upgrade"); //TODO: 경로를 상수로 관리
+        MBUpgradeData[] upgrades = Resources.LoadAll<MBUpgradeData>(MBResourcesPathes.UpgradeList);
         upgradeList = new List<MBUpgradeRuntimeData>();
 
         foreach (var upgrade in upgrades)

@@ -6,11 +6,13 @@ public class MBBreatheController
 {
     private MBBreatheData _breathData;
     private MBMentalStatData _statsData;
+    private MBEffectManager _effectManager;
 
     public MBBreatheController(MBBreatheData breathData, MBMentalStatData statsData)
     {
         _breathData = breathData;
         this._statsData = statsData;
+        _effectManager = MBEffectManager.Instance;
     }
 
     public void StartBreathCharging()
@@ -47,9 +49,11 @@ public class MBBreatheController
     {
         if (_breathData.state == MBBreathState.Idle)
         {
-            _statsData.MentalPoint += (long)(_breathData.PerBreath * _breathData.Multiplier); // XP 지급
+            long gained = (long)(_breathData.PerBreath * _breathData.Multiplier);
+            _statsData.MentalPoint += gained; // XP 지급
             _breathData.state = MBBreathState.Discharging;
             StartBreathDischarging();
+            _effectManager.PlayMultipliedFloatingText(gained.ToString());
         }
     }
 

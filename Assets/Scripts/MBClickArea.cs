@@ -1,16 +1,19 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Leusin.Tools.Effects;
 
 public class MBClickArea : MonoBehaviour
 {
-
+    public GameObject floatingTextPrefab;
     private MBMentalStatData _mentalStatData;
     private MBBreatheData _breatheData;
+    private MBEffectManager _effectManager;
 
     private void Start()
     {
         _mentalStatData = MBDataManager.Instance.MentalStats;
         _breatheData = MBDataManager.Instance.BreathData;
+        _effectManager = MBEffectManager.Instance;
     }
 
     public void OnMouseDown()
@@ -32,6 +35,8 @@ public class MBClickArea : MonoBehaviour
             return;
         }
 
-        _mentalStatData.MentalPoint += _breatheData.PerBreath;
+        long gained = _breatheData.PerBreath;
+        _mentalStatData.MentalPoint += gained;
+        _effectManager.PlayFloatingText(gained.ToString());
     }
 }
