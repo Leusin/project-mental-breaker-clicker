@@ -15,7 +15,7 @@ public class MBDataManager : MonoBehaviourSingleton<MBDataManager>
         MentalStats = new MBMentalStatData();
         UpgradeList = new MBUpgradeList();
     }
-    
+
     public void DeleteAllData()
     {
         PlayerPrefs.DeleteAll();

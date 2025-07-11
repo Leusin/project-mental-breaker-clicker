@@ -10,9 +10,9 @@ public class MBPracticeUpgradePanelController : MonoBehaviour
     public GameObject upgradeEntryPrefab;
     public Transform contentRoot;
 
-    private MBBreatheData _dataManager;
+    private MBBreatheData _breathe;
     private MBMentalStatData _mentalStats;
-    private MBUpgradeList _upgradeManager;
+    private MBUpgradeList _upgrades;
 
     private void Awake()
     {
@@ -27,10 +27,10 @@ public class MBPracticeUpgradePanelController : MonoBehaviour
     private void Start()
     {
         // 컨트롤러 생성 시 필요한 것들 주입
-        _dataManager = MBDataManager.Instance.BreathData;
+        _breathe = MBDataManager.Instance.BreathData;
         _mentalStats = MBDataManager.Instance.MentalStats;
-        _upgradeManager = MBDataManager.Instance.UpgradeList;
-        LoadUpgradeList(_upgradeManager.upgradeList);
+        _upgrades = MBDataManager.Instance.UpgradeList;
+        LoadUpgradeList(_upgrades.upgradeList);
     }
 
     public void LoadUpgradeList(List<MBUpgradeRuntimeData> upgrades)
@@ -64,9 +64,6 @@ public class MBPracticeUpgradePanelController : MonoBehaviour
 
     private void UpdateBreathBonus()
     {
-        long previousValue = _dataManager.PerBreath;
-        float bonus = _upgradeManager.GetClickBonus();
-        _dataManager.PerBreath += (long)bonus;
-        Debug.Log($"호흡 보너스 업데이트: {previousValue} + {bonus} = {_dataManager.PerBreath}");
+        _breathe.PerBreath = _upgrades.GetClickBonus();
     }
 }

@@ -15,6 +15,7 @@ public class MBEffectManager : MonoBehaviourSingleton<MBEffectManager>
     protected override void Awake()
     {
         base.Awake();
+        
         _canvasWorldSpace = GameObject.Find("Canvas_Effect_WorldSpace").GetComponent<Canvas>();
         _canvasScreenSpace = GameObject.Find("Canvas_Effect_ScreenSpaceOverlay").GetComponent<Canvas>();
         _floatingTextPrefab = Resources.Load<GameObject>(MBResourcesPathes.FloatingTextPrefab);

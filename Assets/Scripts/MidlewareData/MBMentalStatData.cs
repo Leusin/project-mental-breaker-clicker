@@ -35,6 +35,25 @@ public class MBMentalStatData
         }
     }
 
+    public long PerSec
+    {
+        get
+        {
+            if (PlayerPrefs.HasKey(MBPlayerPrefKeys.PerSec))
+            {
+                return long.Parse(PlayerPrefs.GetString(MBPlayerPrefKeys.PerSec));
+            }
+            else
+            {
+                return 0;
+            }
+        }
+        set
+        {
+            PlayerPrefs.SetString(MBPlayerPrefKeys.PerSec, value.ToString());
+        }
+    }
+
     /// <summary>
     /// 클릭당 MP 획득량을 결정함
     /// </summary>

@@ -29,17 +29,17 @@ public class MBUpgradeList
         Debug.Log($"[MBUpgradeListManager] {upgradeList.Count}개의 업그레이드 불러옴.");
     }
 
-    public float GetTotalMPPerSec()
+    public long GetTotalMPPerSec()
     {
-        return upgradeList
-            .Where(u => u.data is MBPassiveUpgradeData)
+        return (long)upgradeList
+            .Where(u => u.data is MBHabitUpgradeData && u.IsPurchased)
             .Sum(u => u.CurrentEffect);
     }
 
-    public float GetClickBonus()
+    public long GetClickBonus()
     {
-        return upgradeList
-            .Where(u => u.data is MBPracticeUpgradeData)
+        return (long)upgradeList
+            .Where(u => u.data is MBPracticeUpgradeData && u.IsPurchased)
             .Sum(u => u.CurrentEffect);
     }
 }

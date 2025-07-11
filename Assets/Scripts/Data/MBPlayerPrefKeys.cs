@@ -11,6 +11,7 @@ public static class MBPlayerPrefKeys
     // Mental Status Section
     //
     public const string MentalPoint = "MentalPoint";
+    public const string PerSec = "PerSec";
     public const string MentalLevel = "MentalLevel";
     public const string MentalMood = "MentalMood";
     public const string MentalState = "MentalState";
@@ -19,10 +20,7 @@ public static class MBPlayerPrefKeys
     //
     // Off Game Time Section
     //
-    public static string GetTimeKey()
-    {
-        return $"Time";
-    }
+    public static string LastPlayTime = "LastPlayTime";
 
     // Upgrade Data Section
     public static string GetUpgradeLevelKey(MBUpgradeData data)

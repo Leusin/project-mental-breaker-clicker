@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 780b8902e366e344e961e27c8552bbac, type: 3}
   m_Name: ActiveUpgrade_TEST_CleanRoom 2
   m_EditorClassIdentifier: 
-  upgradeId: clean_room
+  upgradeId: clean_room_2
   upgradeName: cleaning the room
   description: MP/click +
   baseEffectValue: 2

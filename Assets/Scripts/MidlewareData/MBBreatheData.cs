@@ -14,7 +14,6 @@ public class MBBreatheData
     [HideInInspector]
     public float currentSliderVal = 0f;
     public float initDuration = 6f;
-    private long _initPerBreath = 1;
     private float _initMultiplier = 1.1f;
 
     [HideInInspector]
@@ -39,9 +38,6 @@ public class MBBreatheData
         }
     }
 
-    public float MaxPoint => Duration;
-    public float HalfDuration => Duration / 2f;
-
     public long PerBreath
     {
         get
@@ -52,7 +48,7 @@ public class MBBreatheData
             }
             else
             {
-                return _initPerBreath;
+                return 0;
             }
         }
         set
@@ -60,6 +56,9 @@ public class MBBreatheData
             PlayerPrefs.SetString(MBPlayerPrefKeys.PerBreath, value.ToString());
         }
     }
+
+    public float MaxPoint => Duration;
+    public float HalfDuration => Duration / 2f;
 
     public float Multiplier
     {

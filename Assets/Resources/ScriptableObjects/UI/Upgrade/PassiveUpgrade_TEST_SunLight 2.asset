@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7f0ecb272c4c0a4b950edf259154050, type: 3}
   m_Name: PassiveUpgrade_TEST_SunLight 2
   m_EditorClassIdentifier: 
-  upgradeId: sunlight
+  upgradeId: sunlight_2
   upgradeName: bask in the sun
   description: MP/sec +
   baseEffectValue: 2
