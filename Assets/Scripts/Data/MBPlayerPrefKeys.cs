@@ -6,6 +6,7 @@ public static class MBPlayerPrefKeys
     public const string BreatheDuration = "BreatheDuration";
     public const string PerBreath = "PerBreath";
     public const string BreatheMultiplier = "BreatheMultiplier";
+    public const string BreatheMoodChange = "BreatheMoodChange";
 
     //
     // Mental Status Section

@@ -4,28 +4,28 @@ using DG.Tweening;
 
 public class MBBreatheController
 {
-    private MBBreatheData _breathData;
-    private MBMentalStatData _statsData;
+    private MBBreatheData _breath;
+    private MBMentalStatData _mentalStats;
     private MBEffectManager _effectManager;
 
     public MBBreatheController(MBBreatheData breathData, MBMentalStatData statsData)
     {
-        _breathData = breathData;
-        this._statsData = statsData;
+        _breath = breathData;
+        this._mentalStats = statsData;
         _effectManager = MBEffectManager.Instance;
     }
 
     public void StartBreathCharging()
     {
         DOTween.To(
-            () => _breathData.currentSliderVal,
-            x => _breathData.currentSliderVal = x,
-            _breathData.MaxPoint,
-            _breathData.HalfDuration
+            () => _breath.currentSliderVal,
+            x => _breath.currentSliderVal = x,
+            _breath.MaxPoint,
+            _breath.HalfDuration
         ).SetEase(Ease.InSine)
          .OnComplete(() =>
          {
-             _breathData.state = MBBreathState.Idle;
+             _breath.state = MBBreathState.Idle;
          });
         
     }
@@ -33,26 +33,34 @@ public class MBBreatheController
     public void StartBreathDischarging()
     {
         DOTween.To(
-            () => _breathData.currentSliderVal,
-            x => _breathData.currentSliderVal = x,
+            () => _breath.currentSliderVal,
+            x => _breath.currentSliderVal = x,
             0,
-            _breathData.HalfDuration
+            _breath.HalfDuration
         ).SetEase(Ease.OutQuad)
          .OnComplete(() =>
          {
-             _breathData.state = MBBreathState.Charging;
+             _breath.state = MBBreathState.Charging;
              StartBreathCharging();
          });
     }
 
-    public void TriggerButton()
+    public void TriggerBreathe()
     {
-        if (_breathData.state == MBBreathState.Idle)
+        if (_breath.state == MBBreathState.Idle)
         {
-            long gained = (long)(_breathData.PerBreath * _breathData.Multiplier);
-            _statsData.MentalPoint += gained; // XP 지급
-            _breathData.state = MBBreathState.Discharging;
+            // XP 지급
+            long gained = (long)(_breath.PerBreath * _breath.Multiplier);
+            _mentalStats.MentalPoint += gained;
+            _breath.state = MBBreathState.Discharging;
+
+            // Mood 변화 트리거
+            _mentalStats.Mood += _breath.MoodChange;
+
+            // 슬라이더 연출
             StartBreathDischarging();
+
+            // float text
             _effectManager.PlayMultipliedFloatingText(gained.ToString());
         }
     }

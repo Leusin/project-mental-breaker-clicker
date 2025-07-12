@@ -13,8 +13,6 @@ public class MBBreatheData
 {
     [HideInInspector]
     public float currentSliderVal = 0f;
-    public float initDuration = 6f;
-    private float _initMultiplier = 1.1f;
 
     [HideInInspector]
     public MBBreathState state = MBBreathState.Charging;
@@ -29,7 +27,7 @@ public class MBBreatheData
             }
             else
             {
-                return initDuration;
+                return _initDuration;
             }
         }
         set
@@ -78,4 +76,28 @@ public class MBBreatheData
             PlayerPrefs.SetFloat(MBPlayerPrefKeys.BreatheMultiplier, value);
         }
     }
+
+    public float MoodChange
+    {
+        get
+        {
+            if (PlayerPrefs.HasKey(MBPlayerPrefKeys.BreatheMoodChange))
+            {
+                return PlayerPrefs.GetFloat(MBPlayerPrefKeys.BreatheMoodChange);
+            }
+            else
+            {
+                return _initMoodChange;
+            }
+        }
+        set
+        {
+            PlayerPrefs.SetFloat(MBPlayerPrefKeys.BreatheMoodChange, value);
+        }
+    }
+
+
+    private float _initDuration = 6f;
+    private float _initMultiplier = 1.1f;
+    private float _initMoodChange = 0.2f;
 }

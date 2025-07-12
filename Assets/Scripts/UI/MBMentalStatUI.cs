@@ -22,7 +22,7 @@ public class MBMentalStatUI : MonoBehaviour
         mentalPointVal.text = _mentalStat.MentalPoint.ToString();
         mentalPointPerSecVal.text = _mentalStat.PerSec.ToString();
         mentalLevelVal.text = _mentalStat.Level.ToString();
-        mentalMoodVal.text = _mentalStat.Mood.ToString();
+        mentalMoodVal.text = ((int)_mentalStat.Mood).ToString();
         mentalStateVal.text = _mentalStat.MentalState.ToString();
     }
 }

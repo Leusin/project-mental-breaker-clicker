@@ -26,7 +26,7 @@ public class MBBreatheUI : MonoBehaviour
         _controller = new MBBreatheController(_data, MBDataManager.Instance.MentalStats);
         _controller.StartBreathCharging();
 
-        _button.onClick.AddListener(() => _controller.TriggerButton());
+        _button.onClick.AddListener(() => _controller.TriggerBreathe());
 
         //_label.text = $"[ 심호흡 하기 ]";
     }
