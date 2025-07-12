@@ -6,7 +6,7 @@ public class MBDataManager : MonoBehaviourSingleton<MBDataManager>
     public MBBreatheData BreathData { get; private set; }
     public MBMentalStatData MentalStats { get; private set; }
     public MBUpgradeLists UpgradeList { get; private set; }
-    public MBGameDayTracker GameDayController { get; private set; }
+    public MBGameDayTracker GameDayTracker { get; private set; }
     public MBRandomEventLists RandomEventLists { get; private set; }
 
     protected override void Awake()
@@ -16,12 +16,17 @@ public class MBDataManager : MonoBehaviourSingleton<MBDataManager>
         BreathData = new MBBreatheData();
         MentalStats = new MBMentalStatData();
         UpgradeList = new MBUpgradeLists();
-        GameDayController = new MBGameDayTracker();
+        GameDayTracker = new MBGameDayTracker();
         RandomEventLists = new MBRandomEventLists();
     }
 
     public void DeleteAllData()
     {
         PlayerPrefs.DeleteAll();
+    }
+
+    public void IncreaseDailyActionCount()
+    {
+        GameDayTracker.IncreaseDailyActionCount();
     }
 }
