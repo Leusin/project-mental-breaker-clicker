@@ -28,4 +28,8 @@ public static class MBPlayerPrefKeys
     {
         return $"{data.upgradeId}_Level";
     }
+
+    // GameDay Section
+    public static string GameDay = "GameDay";
+    public static string DayilyActionCount = "DayilyActionCount";
 }

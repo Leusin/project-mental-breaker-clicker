@@ -22,8 +22,8 @@ public class MBBreatheUI : MonoBehaviour
     void Start()
     {
         _data = MBDataManager.Instance.BreathData;
-        
-        _controller = new MBBreatheController(_data, MBDataManager.Instance.MentalStats);
+
+        _controller = new MBBreatheController(_data, MBDataManager.Instance.MentalStats, MBEffectManager.Instance, MBDataManager.Instance.GameDayController);
         _controller.StartBreathCharging();
 
         _button.onClick.AddListener(() => _controller.TriggerBreathe());
