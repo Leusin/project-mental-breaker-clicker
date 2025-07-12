@@ -1,0 +1,26 @@
+[
+  {
+    "upgradeId": "sunlight",
+    "upgradeName": "햇빛 쬐기",
+    "description": "햇볕은 마음의 비타민이다.",
+    "upgradeType": "H",
+    "effectType": "MPPerSec",
+    "baseEffect": 1,
+    "perLevelEffect": 0.2,
+    "baseCost": 50,
+    "costMultiplier": 1.15,
+    "unlockConditionText": ""
+  },
+  {
+    "upgradeId": "sunlight",
+    "upgradeName": "햇빛 쬐기",
+    "description": "햇볕은 마음의 비타민이다.",
+    "upgradeType": "P",
+    "effectType": "MPPerSec",
+    "baseEffect": 1,
+    "perLevelEffect": 0.2,
+    "baseCost": 50,
+    "costMultiplier": 1.15,
+    "unlockConditionText": ""
+  }
+]

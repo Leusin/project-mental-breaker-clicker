@@ -12,7 +12,6 @@ public abstract class MBUpgradeData : ScriptableObject
 
     public long baseCost;
     public float costMultiplier;
-    public string unlockConditionText;
 
     [TextArea]
     public string flavorText;

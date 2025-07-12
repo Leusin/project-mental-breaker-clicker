@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.Rendering.Universal;
 
 /// <summary>
 /// 업글 데이터 리스트 보유
@@ -9,37 +10,70 @@ using System.Linq;
 /// </summary>
 public class MBUpgradeList
 {
-    public List<MBUpgradeRuntimeData> upgradeList;
+    public List<MBUpgradeRuntimeData> UpgradeList => _habitUpgradeList.Concat(_practiceUpgradeList).ToList();
+    public List<MBUpgradeRuntimeData> HabitUpgradeList => _habitUpgradeList;
+    public List<MBUpgradeRuntimeData> PracticeUpgradeList => _practiceUpgradeList;
 
-    public MBUpgradeList()
-    {
-        LoadUpgradeData();
-    }
-
-    private void LoadUpgradeData()
-    {
-        MBUpgradeData[] upgrades = Resources.LoadAll<MBUpgradeData>(MBResourcesPathes.UpgradeList);
-        upgradeList = new List<MBUpgradeRuntimeData>();
-
-        foreach (var upgrade in upgrades)
-        {
-            upgradeList.Add(new MBUpgradeRuntimeData(upgrade));
-        }
-
-        Debug.Log($"[MBUpgradeListManager] {upgradeList.Count}개의 업그레이드 불러옴.");
-    }
 
     public long GetTotalMPPerSec()
     {
-        return (long)upgradeList
+        return (long)_habitUpgradeList
             .Where(u => u.data is MBHabitUpgradeData && u.IsPurchased)
             .Sum(u => u.CurrentEffect);
     }
 
     public long GetClickBonus()
     {
-        return (long)upgradeList
+        return (long)_practiceUpgradeList
             .Where(u => u.data is MBPracticeUpgradeData && u.IsPurchased)
             .Sum(u => u.CurrentEffect);
+    }
+
+    public MBUpgradeList()
+    {
+        LoadUpgradeDataFromSO();
+        LoadUpgradeDataFromJson();
+    }
+
+    private List<MBUpgradeRuntimeData> _practiceUpgradeList = new List<MBUpgradeRuntimeData>();
+    private List<MBUpgradeRuntimeData> _habitUpgradeList = new List<MBUpgradeRuntimeData>();
+
+    private void LoadUpgradeDataFromJson()
+    {
+        List<MBUpgradeConfigData> habitDTOs = MBUpgradeConfigLoader.LoadHabbit();
+        List<MBUpgradeConfigData> practiceDTOs = MBUpgradeConfigLoader.LoadPractice();
+
+        foreach (var dto in habitDTOs)
+        {
+            MBUpgradeRuntimeData runtimeData = new MBUpgradeRuntimeData(ScriptableObject.CreateInstance<MBHabitUpgradeData>(), dto);
+            _practiceUpgradeList.Add(runtimeData);
+        }
+
+        foreach (var dto in practiceDTOs)
+        {
+            MBUpgradeRuntimeData runtimeData = new MBUpgradeRuntimeData(ScriptableObject.CreateInstance<MBPracticeUpgradeData>(), dto);
+            _habitUpgradeList.Add(runtimeData);
+        }
+
+        Debug.Log($"[MBUpgradeList] JSON 파싱: {habitDTOs.Count} + {practiceDTOs.Count} 업그레이드 불러옴.");
+    }
+
+    private void LoadUpgradeDataFromSO()
+    {
+        MBUpgradeData[] upgrades = Resources.LoadAll<MBUpgradeData>(MBResourcesPathes.UpgradeList);
+
+        foreach (var upgrade in upgrades)
+        {
+            if( upgrade is MBHabitUpgradeData habitUpgrade)
+            {
+                _habitUpgradeList.Add(new MBUpgradeRuntimeData(habitUpgrade));
+            }
+            else if (upgrade is MBPracticeUpgradeData practiceUpgrade)
+            {
+                _practiceUpgradeList.Add(new MBUpgradeRuntimeData(practiceUpgrade));
+            }
+        }
+
+        Debug.Log($"[MBUpgradeList] SO 파싱: {upgrades.Length} 업그레이드 불러옴.");
     }
 }

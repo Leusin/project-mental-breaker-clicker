@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 /// <summary>
@@ -8,9 +9,21 @@ public class MBUpgradeRuntimeData
 {
     public readonly MBUpgradeData data;
 
-    public MBUpgradeRuntimeData(MBUpgradeData upgradeData)
+    public MBUpgradeRuntimeData(MBUpgradeData upgradeData, MBUpgradeConfigData dto = null)
     {
         data = upgradeData;
+
+        if (dto != null)
+        {
+            upgradeData.upgradeId = dto.upgradeId;
+            upgradeData.upgradeName = dto.upgradeName;
+            upgradeData.description = dto.description;
+            upgradeData.baseEffectValue = dto.baseEffect;
+            upgradeData.effectPerLevel = dto.perLevel;
+            upgradeData.baseCost = dto.baseCost;
+            upgradeData.costMultiplier = dto.costMultiplier;
+            upgradeData.flavorText = dto.flavorText;
+        }
     }
 
     public int Level

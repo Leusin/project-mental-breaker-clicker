@@ -21,7 +21,6 @@ public class MBPracticeUpgradePanelController : MonoBehaviour
             Debug.LogError("업글 UI 프리팹이나 컨텐츠 루트가 설정되지 않았습니다.");
             return;
         }
-
     }
 
     private void Start()
@@ -30,19 +29,16 @@ public class MBPracticeUpgradePanelController : MonoBehaviour
         _breathe = MBDataManager.Instance.BreathData;
         _mentalStats = MBDataManager.Instance.MentalStats;
         _upgrades = MBDataManager.Instance.UpgradeList;
-        LoadUpgradeList(_upgrades.upgradeList);
+        LoadUpgradeList(_upgrades.PracticeUpgradeList);
     }
 
     public void LoadUpgradeList(List<MBUpgradeRuntimeData> upgrades)
     {
         foreach (var data in upgrades)
         {
-            if (data.data is MBPracticeUpgradeData)
-            {
-                GameObject go = Instantiate(upgradeEntryPrefab, contentRoot);
-                MBUpgradeUIEntry entry = go.GetComponent<MBUpgradeUIEntry>();
-                entry.Setup(data, OnUpgradeClicked);
-            }
+            GameObject go = Instantiate(upgradeEntryPrefab, contentRoot);
+            MBUpgradeUIEntry entry = go.GetComponent<MBUpgradeUIEntry>();
+            entry.Setup(data, OnUpgradeClicked);
         }
     }
 

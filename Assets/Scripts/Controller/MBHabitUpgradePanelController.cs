@@ -29,7 +29,7 @@ public class MBHabitUpgradePanelController : MonoBehaviour
         // 컨트롤러 생성 시 필요한 것들 주입
         _mentalStats = MBDataManager.Instance.MentalStats;
         _upgradeManager = MBDataManager.Instance.UpgradeList;
-        LoadUpgradeList(_upgradeManager.upgradeList);
+        LoadUpgradeList(_upgradeManager.HabitUpgradeList);
 
         // 오프라인동안
         _mentalStats.MentalPoint += (long)(_upgradeManager.GetTotalMPPerSec() * TimeAfterLastPlay);
@@ -41,12 +41,9 @@ public class MBHabitUpgradePanelController : MonoBehaviour
     {
         foreach (var data in upgrades)
         {
-            if (data.data is MBHabitUpgradeData)
-            {
-                GameObject go = Instantiate(upgradeEntryPrefab, contentRoot);
-                MBUpgradeUIEntry entry = go.GetComponent<MBUpgradeUIEntry>();
-                entry.Setup(data, OnUpgradeClicked);
-            }
+            GameObject go = Instantiate(upgradeEntryPrefab, contentRoot);
+            MBUpgradeUIEntry entry = go.GetComponent<MBUpgradeUIEntry>();
+            entry.Setup(data, OnUpgradeClicked);
         }
     }
 
