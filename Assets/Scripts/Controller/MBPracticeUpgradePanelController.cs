@@ -12,7 +12,7 @@ public class MBPracticeUpgradePanelController : MonoBehaviour
 
     private MBBreatheData _breathe;
     private MBMentalStatData _mentalStats;
-    private MBUpgradeList _upgrades;
+    private MBUpgradeLists _upgrades;
 
     private void Awake()
     {

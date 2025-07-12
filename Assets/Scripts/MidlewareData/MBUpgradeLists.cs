@@ -1,14 +1,13 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor.Rendering.Universal;
 
 /// <summary>
 /// 업글 데이터 리스트 보유
 /// MBUpgradeData를 로드 한 뒤 MBUpgradeRuntimeData로 변환하여 리스트에 저장
 /// 전체 업그레이드 데이터에 대한 접근을 제공
 /// </summary>
-public class MBUpgradeList
+public class MBUpgradeLists
 {
     public List<MBUpgradeRuntimeData> UpgradeList => _habitUpgradeList.Concat(_practiceUpgradeList).ToList();
     public List<MBUpgradeRuntimeData> HabitUpgradeList => _habitUpgradeList;
@@ -29,7 +28,7 @@ public class MBUpgradeList
             .Sum(u => u.CurrentEffect);
     }
 
-    public MBUpgradeList()
+    public MBUpgradeLists()
     {
         LoadUpgradeDataFromSO();
         LoadUpgradeDataFromJson();
@@ -40,8 +39,8 @@ public class MBUpgradeList
 
     private void LoadUpgradeDataFromJson()
     {
-        List<MBUpgradeConfigData> habitDTOs = MBUpgradeConfigLoader.LoadHabbit();
-        List<MBUpgradeConfigData> practiceDTOs = MBUpgradeConfigLoader.LoadPractice();
+        List<MBUpgradeConfigData> habitDTOs = MBJsonLoader.LoadUpgradeHabbit();
+        List<MBUpgradeConfigData> practiceDTOs = MBJsonLoader.LoadUpgradePractice();
 
         foreach (var dto in habitDTOs)
         {

@@ -46,7 +46,7 @@ public class MBHabitUpgradePanelController : MonoBehaviour
 
     private float _moodChange = 0.01f;
     private MBMentalStatData _mentalStats;
-    private MBUpgradeList _upgradeManager;
+    private MBUpgradeLists _upgradeManager;
 
     private void Awake()
     {
