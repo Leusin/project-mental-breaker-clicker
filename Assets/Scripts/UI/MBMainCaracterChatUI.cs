@@ -23,8 +23,8 @@ public class MBMainCharacterChatUI : MonoBehaviour
         _state = State.OnEvent;
 
         // UI 업데이트
+        //characterName.gameObject.SetActive(false);
         choicesRoot.gameObject.SetActive(true);
-        characterName.gameObject.SetActive(false);
         chatText.text = e.description;
 
         // 선택지 버튼 생성
@@ -41,8 +41,8 @@ public class MBMainCharacterChatUI : MonoBehaviour
                 // 선택지 결과 적용
                 _eventController.ApplyChoiceResult(choice);
                 // UI 초기화
+                //characterName.gameObject.SetActive(true);
                 chatText.text = choice.resultText;
-                characterName.gameObject.SetActive(true);
                 HideChoices();
 
                 _state = State.OffEvent;
