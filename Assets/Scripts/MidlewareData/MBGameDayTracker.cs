@@ -13,23 +13,23 @@ public class MBGameDayTracker
 
     public void IncreaseDailyActionCount()
     {
-        DayilyActionCount++;
+        DailyActionCount++;
 
-        if (DayilyActionCount >= _count_per_day)
+        if (DailyActionCount >= _count_per_day)
         {
             AdvanceDay();
         }
     }
 
-    private int DayilyActionCount
+    private int DailyActionCount
     {
         get
         {
-            return PlayerPrefs.GetInt(MBPlayerPrefKeys.DayilyActionCount, 0);
+            return PlayerPrefs.GetInt(MBPlayerPrefKeys.DailyActionCount, 0);
         }
         set
         {
-            PlayerPrefs.SetInt(MBPlayerPrefKeys.DayilyActionCount, value);
+            PlayerPrefs.SetInt(MBPlayerPrefKeys.DailyActionCount, value);
         }
     }
 
@@ -38,7 +38,7 @@ public class MBGameDayTracker
     private void AdvanceDay()
     {
         InGameDay++;
-        DayilyActionCount = 0;
+        DailyActionCount = 0;
 
         Debug.Log($"[GameDayTracker] 하루 경과: Day {InGameDay}");
 

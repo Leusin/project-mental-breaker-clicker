@@ -21,7 +21,7 @@ public static class MBPlayerPrefKeys
     //
     // Off Game Time Section
     //
-    public static string LastPlayTime = "LastPlayTime";
+    public const string LastPlayTime = "LastPlayTime";
 
     // Upgrade Data Section
     public static string GetUpgradeLevelKey(MBUpgradeData data)
@@ -30,6 +30,9 @@ public static class MBPlayerPrefKeys
     }
 
     // GameDay Section
-    public static string GameDay = "GameDay";
-    public static string DayilyActionCount = "DayilyActionCount";
+    public const string GameDay = "GameDay";
+    public const string DailyActionCount = "DailyActionCount";
+
+    // Event Section
+    public const string IntroPlayedKey = "IntroPlayed";
 }
